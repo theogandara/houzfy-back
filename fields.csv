@@ -1,0 +1,27 @@
+Name,Campo,Descrição
+title,Título,Título descritivo do imóvel.
+price,Preço,Valor monetário do imóvel.
+description,Descrição,Descrição detalhada das características do imóvel.
+purpose,Finalidade,Se o imóvel está disponível para venda aluguel ou temporada.
+category,Categoria,Tipo de propriedade como casa apartamento terreno ou comercial.
+address,Endereço,Nome da rua ou avenida onde o imóvel está localizado.
+number,Número,Número do imóvel na rua.
+complement,Complemento,Informações adicionais sobre a localização do imóvel (opcional).
+neighborhood,Bairro,Nome do bairro onde o imóvel está localizado.
+city,Cidade,Cidade onde o imóvel está situado.
+state,Estado,Estado ou província onde o imóvel está localizado.
+zipCode,CEP,Código de Endereçamento Postal do imóvel.
+totalArea,Área Total (m²),Área total do terreno ou propriedade em metros quadrados.
+builtArea,Área Construída (m²),Área construída do imóvel em metros quadrados.
+bedrooms,Quantidade de Quartos,Número total de quartos no imóvel.
+bathrooms,Quantidade de Banheiros,Número total de banheiros no imóvel.
+suites,Quantidade de Suítes,Número total de suítes no imóvel.
+parkingSpaces,Quantidade de Vagas de Garagem,Número total de vagas de garagem disponíveis.
+pool,Piscina,Indicação se o imóvel possui piscina (Sim/Não).
+gym,Academia,Indicação se o imóvel possui academia (Sim/Não).
+elevator,Elevador,Indicação se o imóvel possui elevador (Sim/Não).
+petsAllowed,Aceita Animais,Indicação se o imóvel aceita animais de estimação (Sim/Não).
+barbecueArea,Churrasqueira,Indicação se o imóvel possui área com churrasqueira (Sim/Não).
+security24h,Portaria 24h,Indicação se o imóvel possui serviço de portaria 24 horas (Sim/Não).
+furnished,Está Mobiliado,Indicação se o imóvel está mobiliado (Sim/Não).
+others,Outros,Informações adicionais relevantes sobre o imóvel.
