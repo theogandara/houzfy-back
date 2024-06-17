@@ -16,5 +16,6 @@ property_id uuid primary key,
  title text not null,
  price text not null,
  purpose text not null
- category text not null
+ category text not null,
+ created_at timestamp
  );
