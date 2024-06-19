@@ -4,6 +4,7 @@ import Signup from "../../application/usecase/Signup";
 import CreateProperty from "../../application/usecase/CreateProperty";
 import GetProperties from "../../application/usecase/GetProperties";
 import GetProperty from "../../application/usecase/GetProperty";
+import DeleteProperty from "../../application/usecase/DeleteProperty";
 
 export default class MainController {
   constructor(
@@ -12,7 +13,8 @@ export default class MainController {
     getAccount: GetAccount,
     createProperty: CreateProperty,
     getProperties: GetProperties,
-    getProperty: GetProperty
+    getProperty: GetProperty,
+    deleteProperty: DeleteProperty
   ) {
     httpServer.register(
       "post",
@@ -55,6 +57,15 @@ export default class MainController {
       "/property",
       async function (params: any, body: any, query: any) {
         const output = await getProperty.execute(query.propertyId);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "delete",
+      "/property",
+      async function (params: any, body: any, query: any) {
+        const output = await deleteProperty.execute(query.propertyId);
         return output;
       }
     );

@@ -10,7 +10,8 @@ export interface PropertyRepository {
     pageSize: number;
     properties: Property[];
   }>;
-  getProperty(id: string): Promise<{ property: any }>;
+  getProperty(id: string): Promise<{ property: Property }>;
+  deleteProperty(id: string): Promise<void>;
 }
 
 export default class PropertyRepositoryDatabase implements PropertyRepository {
@@ -152,5 +153,14 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
     return {
       property,
     };
+  }
+
+  async deleteProperty(id: string) {
+    const response = await this.connection.query(
+      `delete from houzfy.property where property_id = $1;`,
+      id
+    );
+
+    console.log(response);
   }
 }
