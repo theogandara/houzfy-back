@@ -9,6 +9,7 @@ import CreateProperty from "./application/usecase/CreateProperty";
 import GetProperties from "./application/usecase/GetProperties";
 import GetProperty from "./application/usecase/GetProperty";
 import DeleteProperty from "./application/usecase/DeleteProperty";
+import UpdateProperty from "./application/usecase/UpdateProperty";
 
 const httpServer = new ExpressAdapter();
 const connection = new PGPromiseAdapter();
@@ -20,6 +21,7 @@ const createProperty = new CreateProperty(propertyRepository);
 const getProperties = new GetProperties(propertyRepository);
 const getProperty = new GetProperty(propertyRepository);
 const deleteProperty = new DeleteProperty(propertyRepository);
+const updateProperty = new UpdateProperty(propertyRepository);
 new MainController(
   httpServer,
   signup,
@@ -27,7 +29,8 @@ new MainController(
   createProperty,
   getProperties,
   getProperty,
-  deleteProperty
+  deleteProperty,
+  updateProperty
 );
 
 httpServer.listen(3000);

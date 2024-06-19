@@ -115,6 +115,91 @@ export default class Property {
     );
   }
 
+  static update(
+    propertyId: string,
+    title: string,
+    price: number,
+    description: string,
+    purpose: string,
+    category: string,
+    address: string,
+    number: string,
+    neighborhood: string,
+    city: string,
+    state: string,
+    zipCode: string,
+    totalArea: number,
+    builtArea: number,
+    bedrooms: number,
+    bathrooms: number,
+    suites: number,
+    parkingSpaces: number,
+    pool: boolean,
+    gym: boolean,
+    elevator: boolean,
+    petsAllowed: boolean,
+    barbecueArea: boolean,
+    security24h: boolean,
+    furnished: boolean,
+    others: string,
+    createdAt: Date
+  ) {
+    this.validateTitle(title);
+    this.validatePurpose(purpose);
+    this.validateDescription(description);
+    this.validateCategory(category);
+    this.validateAddress(address);
+    this.validateNumber(number);
+    this.validateNeighborhood(neighborhood);
+    this.validateCity(city);
+    this.validateState(state);
+    this.validateZipCode(zipCode);
+    this.validateTotalArea(totalArea);
+    this.validateBuiltArea(builtArea);
+    this.validateBedrooms(bedrooms);
+    this.validateBathrooms(bathrooms);
+    this.validateSuites(suites);
+    this.validateParkingSpaces(parkingSpaces);
+    this.validateBooleanField(pool, "Pool");
+    this.validateBooleanField(gym, "Gym");
+    this.validateBooleanField(elevator, "Elevator");
+    this.validateBooleanField(petsAllowed, "Pets Allowed");
+    this.validateBooleanField(barbecueArea, "Barbecue Area");
+    this.validateBooleanField(security24h, "Security 24h");
+    this.validateBooleanField(furnished, "Furnished");
+    this.validateOthers(others);
+
+    return new Property(
+      propertyId,
+      title,
+      price,
+      description,
+      purpose,
+      category,
+      address,
+      number,
+      neighborhood,
+      city,
+      state,
+      zipCode,
+      totalArea,
+      builtArea,
+      bedrooms,
+      bathrooms,
+      suites,
+      parkingSpaces,
+      pool,
+      gym,
+      elevator,
+      petsAllowed,
+      barbecueArea,
+      security24h,
+      furnished,
+      others,
+      createdAt
+    );
+  }
+
   static restore(
     propertyId: string,
     title: string,
