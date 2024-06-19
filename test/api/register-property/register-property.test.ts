@@ -15,7 +15,7 @@ const property = {
   number: "123",
   neighborhood: "Beachfront Paradise",
   city: "Coastal City",
-  state: "State of Sunshine",
+  state: "SP",
   zipCode: "54321",
   totalArea: 800,
   builtArea: 450,
@@ -34,15 +34,9 @@ const property = {
 };
 
 test("Create a property", async function () {
-  const input = {
-    title: "Luxurious Beachfront Villa",
-    price: "1500000",
-    purpose: "sale",
-    category: "house",
-  };
   const responseNewProperty = await axios.post(
     "http://localhost:3000/new-property",
-    input
+    property
   );
   const outputNewProperty = responseNewProperty.data;
   expect(outputNewProperty.propertyId).toBeDefined();

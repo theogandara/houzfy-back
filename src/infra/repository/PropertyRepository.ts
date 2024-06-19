@@ -17,13 +17,42 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
 
   async save(property: Property) {
     await this.connection.query(
-      "insert into houzfy.property (property_id, title, price, purpose, category, created_at) values ($1, $2, $3, $4, $5, $6)",
+      `insert into houzfy.property (
+        property_id, title, price, description, purpose, category, address, number, 
+        neighborhood, city, state, zip_code, total_area, built_area, bedrooms, 
+        bathrooms, suites, parking_spaces, pool, gym, elevator, pets_allowed, 
+        barbecue_area, security_24h, furnished, others, created_at
+      ) values (
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, 
+        $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27
+      )`,
       [
         property.propertyId,
         property.title,
         property.price,
+        property.description,
         property.purpose,
         property.category,
+        property.address,
+        property.number,
+        property.neighborhood,
+        property.city,
+        property.state,
+        property.zipCode,
+        property.totalArea,
+        property.builtArea,
+        property.bedrooms,
+        property.bathrooms,
+        property.suites,
+        property.parkingSpaces,
+        property.pool,
+        property.gym,
+        property.elevator,
+        property.petsAllowed,
+        property.barbecueArea,
+        property.security24h,
+        property.furnished,
+        property.others,
         property.createdAt,
       ]
     );
@@ -37,10 +66,42 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
 
     const limit = 10;
     const start = page * limit - limit;
-    const properties = await this.connection.query(
+    const propertiesData = await this.connection.query(
       `select * from houzfy.property order by created_at DESC limit ${limit} offset ${start}`,
       ""
     );
+
+    const properties = propertiesData.map((data: any) => {
+      return Property.restore(
+        data.property_id,
+        data.title,
+        data.price,
+        data.description,
+        data.purpose,
+        data.category,
+        data.address,
+        data.number,
+        data.neighborhood,
+        data.city,
+        data.state,
+        data.zip_code,
+        data.total_area,
+        data.built_area,
+        data.bedrooms,
+        data.bathrooms,
+        data.suites,
+        data.parking_spaces,
+        data.pool,
+        data.gym,
+        data.elevator,
+        data.pets_allowed,
+        data.barbecue_area,
+        data.security_24h,
+        data.furnished,
+        data.others,
+        new Date(data.created_at)
+      );
+    });
 
     return {
       pages: Math.ceil(total.count / limit),
