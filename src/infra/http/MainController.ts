@@ -3,6 +3,7 @@ import GetAccount from "../../application/usecase/GetAccount";
 import Signup from "../../application/usecase/Signup";
 import CreateProperty from "../../application/usecase/CreateProperty";
 import GetProperties from "../../application/usecase/GetProperties";
+import GetProperty from "../../application/usecase/GetProperty";
 
 export default class MainController {
   constructor(
@@ -10,7 +11,8 @@ export default class MainController {
     signup: Signup,
     getAccount: GetAccount,
     createProperty: CreateProperty,
-    getProperties: GetProperties
+    getProperties: GetProperties,
+    getProperty: GetProperty
   ) {
     httpServer.register(
       "post",
@@ -44,6 +46,15 @@ export default class MainController {
       "/properties",
       async function (params: any, body: any, query: any) {
         const output = await getProperties.execute(Number(query.page));
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "get",
+      "/property",
+      async function (params: any, body: any, query: any) {
+        const output = await getProperty.execute(query.propertyId);
         return output;
       }
     );

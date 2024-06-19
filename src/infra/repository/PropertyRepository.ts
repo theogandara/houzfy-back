@@ -10,6 +10,7 @@ export interface PropertyRepository {
     pageSize: number;
     properties: Property[];
   }>;
+  getProperty(id: string): Promise<{ property: any }>;
 }
 
 export default class PropertyRepositoryDatabase implements PropertyRepository {
@@ -109,6 +110,47 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
       perPage: limit,
       pageSize: properties.length,
       properties,
+    };
+  }
+
+  async getProperty(id: string) {
+    const [data] = await this.connection.query(
+      `select * from houzfy.property where property_id = $1;`,
+      id
+    );
+
+    const property = Property.restore(
+      data.property_id,
+      data.title,
+      data.price,
+      data.description,
+      data.purpose,
+      data.category,
+      data.address,
+      data.number,
+      data.neighborhood,
+      data.city,
+      data.state,
+      data.zip_code,
+      data.total_area,
+      data.built_area,
+      data.bedrooms,
+      data.bathrooms,
+      data.suites,
+      data.parking_spaces,
+      data.pool,
+      data.gym,
+      data.elevator,
+      data.pets_allowed,
+      data.barbecue_area,
+      data.security_24h,
+      data.furnished,
+      data.others,
+      data.created_at
+    );
+
+    return {
+      property,
     };
   }
 }
