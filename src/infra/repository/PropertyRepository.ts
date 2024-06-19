@@ -168,7 +168,5 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
       `delete from houzfy.property where property_id = $1;`,
       id
     );
-
-    console.log(response);
   }
 }
