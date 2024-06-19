@@ -10,7 +10,9 @@ export interface PropertyRepository {
     pageSize: number;
     properties: Property[];
   }>;
-  getProperty(id: string): Promise<{ property: Property }>;
+  getProperty(
+    id: string
+  ): Promise<{ property: Property } | { message: string }>;
   deleteProperty(id: string): Promise<void>;
 }
 
@@ -119,6 +121,12 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
       `select * from houzfy.property where property_id = $1;`,
       id
     );
+
+    if (!data) {
+      return {
+        message: "property not found",
+      };
+    }
 
     const property = Property.restore(
       data.property_id,
