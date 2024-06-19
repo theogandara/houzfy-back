@@ -1,9 +1,11 @@
 import express from "express";
-
+const cors = require("cors");
 export default interface HttpServer {
   register(method: string, url: string, callback: Function): void;
   listen(port: number): void;
 }
+
+const allowlist = ["http://localhost:3003"];
 
 export class ExpressAdapter implements HttpServer {
   app: any;
@@ -11,6 +13,7 @@ export class ExpressAdapter implements HttpServer {
   constructor() {
     this.app = express();
     this.app.use(express.json());
+    this.app.use(cors({ origin: allowlist }));
   }
 
   register(method: string, url: string, callback: Function): void {
