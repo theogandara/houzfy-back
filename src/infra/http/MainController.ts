@@ -6,6 +6,10 @@ import GetProperties from "../../application/usecase/GetProperties";
 import GetProperty from "../../application/usecase/GetProperty";
 import DeleteProperty from "../../application/usecase/DeleteProperty";
 import UpdateProperty from "../../application/usecase/UpdateProperty";
+import CreateLead from "../../application/usecase/CreateLead";
+import UpdateLead from "../../application/usecase/UpdateLead";
+import GetLeads from "../../application/usecase/GetLeads";
+import DeleteLead from "../../application/usecase/DeleteLead";
 
 export default class MainController {
   constructor(
@@ -16,7 +20,11 @@ export default class MainController {
     getProperties: GetProperties,
     getProperty: GetProperty,
     deleteProperty: DeleteProperty,
-    updateProperty: UpdateProperty
+    updateProperty: UpdateProperty,
+    createLead: CreateLead,
+    updateLead: UpdateLead,
+    getLeads: GetLeads,
+    deleteLead: DeleteLead
   ) {
     httpServer.register(
       "post",
@@ -77,6 +85,42 @@ export default class MainController {
       "/update-property",
       async function (params: any, body: any, query: any) {
         const output = await updateProperty.execute(query.propertyId, body);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "post",
+      "/new-lead",
+      async function (params: any, body: any) {
+        const output = await createLead.execute(body);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "post",
+      "/update-lead",
+      async function (params: any, body: any, query: any) {
+        const output = await updateLead.execute(query.leadId, body);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "get",
+      "/leads",
+      async function (params: any, body: any, query: any) {
+        const output = await getLeads.execute(query.page);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "delete",
+      "/lead",
+      async function (params: any, body: any, query: any) {
+        const output = await deleteLead.execute(query.leadId);
         return output;
       }
     );
