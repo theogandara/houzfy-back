@@ -367,6 +367,7 @@ export default class Property {
   }
 
   private static validateOthers(others: string) {
+    if (!others) return;
     if (others.length >= 255) {
       throw new Error("Others must be less than 255 characters.");
     }
