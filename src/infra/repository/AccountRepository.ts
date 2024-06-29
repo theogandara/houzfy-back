@@ -4,6 +4,7 @@ import DatabaseConnection from "../database/DatabaseConnection";
 export interface AccountRepository {
   save(account: Account): Promise<void>;
   getByEmail(email: string): Promise<Account | undefined>;
+  getByEmailWithPassword(email: string): Promise<Account | undefined>;
   getById(accountId: string): Promise<Account | undefined>;
 }
 
@@ -46,6 +47,20 @@ export default class AccountRepositoryDatabase implements AccountRepository {
       account.name,
       account.email,
       account.cpf
+    );
+  }
+  async getByEmailWithPassword(email: string) {
+    const [account] = await this.connection.query(
+      "select * from houzfy.account where email = $1",
+      [email]
+    );
+    if (!account) return;
+    return Account.restore(
+      account.account_id,
+      account.name,
+      account.email,
+      account.cpf,
+      account.password
     );
   }
 }

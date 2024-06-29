@@ -19,17 +19,22 @@ export default class Account {
     if (!name) throw new Error("The name field is missing");
     if (!email) throw new Error("The email field is missing");
     if (!cpf) throw new Error("The cpf field is missing");
-
     const accountId = crypto.randomUUID();
     const password = Password.create(rawPassword).getValue();
     return new Account(accountId, name, email, cpf, password);
   }
 
-  static restore(accountId: string, name: string, email: string, cpf: string) {
+  static restore(
+    accountId: string,
+    name: string,
+    email: string,
+    cpf: string,
+    password?: string
+  ) {
     if (!name) throw new Error("The name field is missing");
     if (!email) throw new Error("The email field is missing");
     if (!cpf) throw new Error("The cpf field is missing");
-    return new Account(accountId, name, email, cpf, "");
+    return new Account(accountId, name, email, cpf, password || "");
   }
 
   setPassword(password: string) {

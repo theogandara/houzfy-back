@@ -16,6 +16,7 @@ import GetLeads from "./application/usecase/GetLeads";
 import DeleteLead from "./application/usecase/DeleteLead";
 import LeadRepositoryDatabase from "./infra/repository/LeadRepository";
 import PasswordServiceBCrypt from "./infra/service/PasswordServiceBCrypt";
+import Login from "./application/usecase/Login";
 
 const httpServer = new ExpressAdapter();
 const connection = new PGPromiseAdapter();
@@ -24,6 +25,7 @@ const accountRepository = new AccountRepositoryDatabase(connection);
 const propertyRepository = new PropertyRepositoryDatabase(connection);
 const leadRepository = new LeadRepositoryDatabase(connection);
 const signup = new Signup(accountRepository, passwordService);
+const login = new Login(accountRepository, passwordService);
 const getAccount = new GetAccount(accountRepository);
 const createProperty = new CreateProperty(propertyRepository);
 const getProperties = new GetProperties(propertyRepository);
@@ -37,6 +39,7 @@ const deleteLead = new DeleteLead(leadRepository);
 new MainController(
   httpServer,
   signup,
+  login,
   getAccount,
   createProperty,
   getProperties,

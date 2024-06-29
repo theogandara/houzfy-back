@@ -10,11 +10,13 @@ import CreateLead from "../../application/usecase/CreateLead";
 import UpdateLead from "../../application/usecase/UpdateLead";
 import GetLeads from "../../application/usecase/GetLeads";
 import DeleteLead from "../../application/usecase/DeleteLead";
+import Login from "../../application/usecase/Login";
 
 export default class MainController {
   constructor(
     httpServer: HttpServer,
     signup: Signup,
+    login: Login,
     getAccount: GetAccount,
     createProperty: CreateProperty,
     getProperties: GetProperties,
@@ -31,6 +33,15 @@ export default class MainController {
       "/signup",
       async function (params: any, body: any) {
         const output = await signup.execute(body);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "post",
+      "/login",
+      async function (params: any, body: any) {
+        const output = await login.execute(body);
         return output;
       }
     );
