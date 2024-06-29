@@ -15,13 +15,15 @@ import UpdateLead from "./application/usecase/UpdateLead";
 import GetLeads from "./application/usecase/GetLeads";
 import DeleteLead from "./application/usecase/DeleteLead";
 import LeadRepositoryDatabase from "./infra/repository/LeadRepository";
+import PasswordServiceBCrypt from "./infra/service/PasswordServiceBCrypt";
 
 const httpServer = new ExpressAdapter();
 const connection = new PGPromiseAdapter();
+const passwordService = new PasswordServiceBCrypt();
 const accountRepository = new AccountRepositoryDatabase(connection);
 const propertyRepository = new PropertyRepositoryDatabase(connection);
 const leadRepository = new LeadRepositoryDatabase(connection);
-const signup = new Signup(accountRepository);
+const signup = new Signup(accountRepository, passwordService);
 const getAccount = new GetAccount(accountRepository);
 const createProperty = new CreateProperty(propertyRepository);
 const getProperties = new GetProperties(propertyRepository);

@@ -12,8 +12,14 @@ export default class AccountRepositoryDatabase implements AccountRepository {
 
   async save(account: Account) {
     await this.connection.query(
-      "insert into houzfy.account (account_id, name, email, cpf) values ($1, $2, $3, $4)",
-      [account.accountId, account.name, account.email, account.cpf]
+      "insert into houzfy.account (account_id, name, email, cpf, password) values ($1, $2, $3, $4, $5)",
+      [
+        account.accountId,
+        account.name,
+        account.email,
+        account.cpf,
+        account.getPassword(),
+      ]
     );
   }
   async getByEmail(email: string) {
