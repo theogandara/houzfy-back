@@ -2,6 +2,7 @@ import GetAccount from "../src/application/usecase/GetAccount";
 import Signup from "../src/application/usecase/Signup";
 import { PGPromiseAdapter } from "../src/infra/database/DatabaseConnection";
 import AccountRepositoryDatabase from "../src/infra/repository/AccountRepository";
+import PasswordServiceBCrypt from "../src/infra/service/PasswordServiceBCrypt";
 
 let signup: Signup;
 let getAccount: GetAccount;
@@ -10,7 +11,8 @@ let connection: PGPromiseAdapter;
 beforeEach(() => {
   connection = new PGPromiseAdapter();
   const accountRepository = new AccountRepositoryDatabase(connection);
-  signup = new Signup(accountRepository);
+  const passwordService = new PasswordServiceBCrypt();
+  signup = new Signup(accountRepository, passwordService);
   getAccount = new GetAccount(accountRepository);
 });
 
