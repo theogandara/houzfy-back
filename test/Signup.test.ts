@@ -19,6 +19,7 @@ test("Create account", async function () {
     name: "Jhon Doe",
     email: `john.doe.${Math.random()}@example.com`,
     cpf: "123.456.789-09",
+    password: "12345678",
   };
   const result = await signup.execute(input);
   expect(result).toBeDefined();
@@ -34,18 +35,21 @@ test("Return error when CPF is invalid", async function () {
     name: "John Doe",
     email: `john.doe.${Math.random()}@example.com`,
     cpf: "09",
+    password: "Return error when CPF is invalid",
   };
   await expect(() => signup.execute(input)).rejects.toThrow(
     new Error("CPF is invalid")
   );
 });
 
-test("Return error when email is invalid", async function () {
+test("Return error when EMAIL is invalid", async function () {
   const input = {
     name: "John Doe",
     email: `john.doe.${Math.random()}`,
     cpf: "123.456.789-09",
+    password: "Return error when email is invalid",
   };
+
   await expect(() => signup.execute(input)).rejects.toThrow(
     new Error("Email is invalid")
   );
@@ -56,6 +60,7 @@ test("Return error when NAME is invalid", async function () {
     name: "",
     email: `john.doe.${Math.random()}`,
     cpf: "123.456.789-09",
+    password: "Return error when NAME is invalid",
   };
   await expect(() => signup.execute(input)).rejects.toThrow(
     new Error("The name field is missing")
@@ -68,6 +73,7 @@ test("Return error when user already exists", async function () {
     email,
     name: "John Doe",
     cpf: "123.456.789-09",
+    password: "Return error when user already exists",
   };
   await signup.execute(input);
   await expect(() => signup.execute(input)).rejects.toThrow(
