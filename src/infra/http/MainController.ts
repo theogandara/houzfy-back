@@ -29,6 +29,7 @@ export default class MainController {
     deleteLead: DeleteLead
   ) {
     httpServer.register(
+      "PUBLIC",
       "post",
       "/signup",
       async function (params: any, body: any) {
@@ -38,6 +39,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PUBLIC",
       "post",
       "/login",
       async function (params: any, body: any) {
@@ -47,6 +49,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "get",
       "/accounts/:accountId",
       async function (params: any, body: any) {
@@ -56,6 +59,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "post",
       "/new-property",
       async function (params: any, body: any) {
@@ -65,6 +69,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "get",
       "/properties",
       async function (params: any, body: any, query: any) {
@@ -74,6 +79,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "get",
       "/property",
       async function (params: any, body: any, query: any) {
@@ -83,6 +89,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "delete",
       "/property",
       async function (params: any, body: any, query: any) {
@@ -92,6 +99,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "post",
       "/update-property",
       async function (params: any, body: any, query: any) {
@@ -101,6 +109,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "post",
       "/new-lead",
       async function (params: any, body: any) {
@@ -110,6 +119,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "post",
       "/update-lead",
       async function (params: any, body: any, query: any) {
@@ -119,6 +129,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "get",
       "/leads",
       async function (params: any, body: any, query: any) {
@@ -128,6 +139,7 @@ export default class MainController {
     );
 
     httpServer.register(
+      "PROTECTED",
       "delete",
       "/lead",
       async function (params: any, body: any, query: any) {
