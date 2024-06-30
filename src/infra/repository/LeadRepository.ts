@@ -15,7 +15,7 @@ export default class LeadRepositoryDatabase implements LeadRepository {
 
   async save(lead: Lead) {
     await this.connection.query(
-      `INSERT INTO leads (
+      `INSERT INTO houzfy.leads (
         lead_id, name, email, phone, message, property_id, created_at
       ) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
@@ -32,7 +32,7 @@ export default class LeadRepositoryDatabase implements LeadRepository {
 
   async getLead(id: string): Promise<Lead | undefined> {
     const [data] = await this.connection.query(
-      `SELECT * FROM leads WHERE lead_id = $1`,
+      `SELECT * FROM houzfy.leads WHERE lead_id = $1`,
       [id]
     );
 
@@ -50,12 +50,14 @@ export default class LeadRepositoryDatabase implements LeadRepository {
   }
 
   async deleteLead(id: string): Promise<void> {
-    await this.connection.query(`DELETE FROM leads WHERE lead_id = $1`, [id]);
+    await this.connection.query(`DELETE FROM houzfy.leads WHERE lead_id = $1`, [
+      id,
+    ]);
   }
 
   async updateLead(lead: Lead): Promise<void> {
     await this.connection.query(
-      `UPDATE leads SET 
+      `UPDATE houzfy.leads SET 
         name = $1,
         email = $2,
         phone = $3,
@@ -80,7 +82,7 @@ export default class LeadRepositoryDatabase implements LeadRepository {
     const offset = Number(page) * limit - limit;
 
     const data = await this.connection.query(
-      `select * from leads order by created_at DESC limit $1 offset $2`,
+      `select * from houzfy.leads order by created_at DESC limit $1 offset $2`,
       [limit, offset]
     );
 
@@ -99,7 +101,7 @@ export default class LeadRepositoryDatabase implements LeadRepository {
 
   async countLeads(): Promise<{ count: number }> {
     const [data] = await this.connection.query(
-      `SELECT COUNT(*) AS count FROM leads`,
+      `SELECT COUNT(*) AS count FROM houzfy.leads`,
       ""
     );
     return { count: Number(data.count) };
