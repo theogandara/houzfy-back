@@ -11,6 +11,7 @@ import UpdateLead from "../../application/usecase/UpdateLead";
 import GetLeads from "../../application/usecase/GetLeads";
 import DeleteLead from "../../application/usecase/DeleteLead";
 import Login from "../../application/usecase/Login";
+import UploadFile from "../../application/usecase/UploadFile";
 
 export default class MainController {
   constructor(
@@ -26,7 +27,8 @@ export default class MainController {
     createLead: CreateLead,
     updateLead: UpdateLead,
     getLeads: GetLeads,
-    deleteLead: DeleteLead
+    deleteLead: DeleteLead,
+    upload: UploadFile
   ) {
     httpServer.register(
       "PUBLIC",
@@ -147,5 +149,10 @@ export default class MainController {
         return output;
       }
     );
+
+    httpServer.registerUpload("post", "/upload", async function (req: any) {
+      const output = upload.execute(req.file.buffer, req.file.originalname);
+      return output;
+    });
   }
 }

@@ -17,6 +17,7 @@ import DeleteLead from "./application/usecase/DeleteLead";
 import LeadRepositoryDatabase from "./infra/repository/LeadRepository";
 import PasswordServiceBCrypt from "./infra/service/PasswordServiceBCrypt";
 import Login from "./application/usecase/Login";
+import UploadFile from "./application/usecase/UploadFile";
 
 const httpServer = new ExpressAdapter();
 const connection = new PGPromiseAdapter();
@@ -36,6 +37,7 @@ const createLead = new CreateLead(leadRepository);
 const updateLead = new UpdateLead(leadRepository);
 const getLeads = new GetLeads(leadRepository);
 const deleteLead = new DeleteLead(leadRepository);
+const upload = new UploadFile();
 new MainController(
   httpServer,
   signup,
@@ -49,7 +51,8 @@ new MainController(
   createLead,
   updateLead,
   getLeads,
-  deleteLead
+  deleteLead,
+  upload
 );
 
 httpServer.listen(3000);
