@@ -1,5 +1,4 @@
-import Lead from "../../domain/Lead";
-import { LeadRepository } from "../../infra/repository/LeadRepository";
+import { LeadRepository } from "../../../infra/repository/LeadRepository";
 
 export default class ListLeads {
   constructor(readonly leadRepository: LeadRepository) {}

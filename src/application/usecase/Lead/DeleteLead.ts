@@ -1,4 +1,4 @@
-import { LeadRepository } from "../../infra/repository/LeadRepository";
+import { LeadRepository } from "../../../infra/repository/LeadRepository";
 
 export default class DeleteLead {
   constructor(readonly leadRepository: LeadRepository) {}

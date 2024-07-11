@@ -1,4 +1,4 @@
-import { PropertyRepository } from "../../infra/repository/PropertyRepository";
+import { PropertyRepository } from "../../../infra/repository/PropertyRepository";
 
 export default class DeleteProperty {
   constructor(readonly propertyRepository: PropertyRepository) {}

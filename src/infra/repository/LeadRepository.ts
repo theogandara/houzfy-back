@@ -1,4 +1,4 @@
-import Lead from "../../domain/Lead";
+import Lead from "../../domain/entity/Lead";
 import DatabaseConnection from "../database/DatabaseConnection";
 
 export interface LeadRepository {

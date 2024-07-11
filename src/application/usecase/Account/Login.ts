@@ -1,5 +1,5 @@
-import { PasswordService } from "../../domain/ds/PasswordService";
-import { AccountRepository } from "../../infra/repository/AccountRepository";
+import { PasswordService } from "../../../domain/ds/PasswordService";
+import { AccountRepository } from "../../../infra/repository/AccountRepository";
 import jwt from "jsonwebtoken";
 
 export default class Login {

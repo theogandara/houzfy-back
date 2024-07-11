@@ -1,4 +1,4 @@
-import Property from "../../domain/Property";
+import Property from "../../domain/entity/Property";
 import DatabaseConnection from "../database/DatabaseConnection";
 
 export interface PropertyRepository {

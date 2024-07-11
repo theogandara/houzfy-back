@@ -1,17 +1,18 @@
 import HttpServer from "./HttpServer";
-import GetAccount from "../../application/usecase/GetAccount";
-import Signup from "../../application/usecase/Signup";
-import CreateProperty from "../../application/usecase/CreateProperty";
-import GetProperties from "../../application/usecase/GetProperties";
-import GetProperty from "../../application/usecase/GetProperty";
-import DeleteProperty from "../../application/usecase/DeleteProperty";
-import UpdateProperty from "../../application/usecase/UpdateProperty";
-import CreateLead from "../../application/usecase/CreateLead";
-import UpdateLead from "../../application/usecase/UpdateLead";
-import GetLeads from "../../application/usecase/GetLeads";
-import DeleteLead from "../../application/usecase/DeleteLead";
-import Login from "../../application/usecase/Login";
+
 import UploadFile from "../../application/usecase/UploadFile";
+import GetAccount from "../../application/usecase/Account/GetAccount";
+import Login from "../../application/usecase/Account/Login";
+import Signup from "../../application/usecase/Account/Signup";
+import CreateLead from "../../application/usecase/Lead/CreateLead";
+import DeleteLead from "../../application/usecase/Lead/DeleteLead";
+import GetLeads from "../../application/usecase/Lead/GetLeads";
+import UpdateLead from "../../application/usecase/Lead/UpdateLead";
+import CreateProperty from "../../application/usecase/Property/CreateProperty";
+import DeleteProperty from "../../application/usecase/Property/DeleteProperty";
+import GetProperties from "../../application/usecase/Property/GetProperties";
+import GetProperty from "../../application/usecase/Property/GetProperty";
+import UpdateProperty from "../../application/usecase/Property/UpdateProperty";
 
 export default class MainController {
   constructor(

@@ -1,5 +1,5 @@
-import Property from "../../domain/Property";
-import { PropertyRepository } from "../../infra/repository/PropertyRepository";
+import Property from "../../../domain/entity/Property";
+import { PropertyRepository } from "../../../infra/repository/PropertyRepository";
 
 export default class UpdateProperty {
   constructor(readonly propertyRepository: PropertyRepository) {}

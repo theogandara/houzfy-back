@@ -1,5 +1,5 @@
-import Lead from "../../domain/Lead";
-import { LeadRepository } from "../../infra/repository/LeadRepository";
+import Lead from "../../../domain/entity/Lead";
+import { LeadRepository } from "../../../infra/repository/LeadRepository";
 
 interface CreateLeadInput {
   name: string;

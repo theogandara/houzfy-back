@@ -1,6 +1,6 @@
-import Account from "../../domain/Account";
-import { PasswordService } from "../../domain/ds/PasswordService";
-import { AccountRepository } from "../../infra/repository/AccountRepository";
+import Account from "../../../domain/entity/Account";
+import { PasswordService } from "../../../domain/ds/PasswordService";
+import { AccountRepository } from "../../../infra/repository/AccountRepository";
 
 export default class Signup {
   constructor(

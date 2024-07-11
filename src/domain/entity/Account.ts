@@ -1,6 +1,6 @@
 import crypto from "crypto";
-import { validateCpf } from "./validateCpf";
-import Password from "./vo/Password";
+import { validateCpf } from "../validateCpf";
+import Password from "../vo/Password";
 
 export default class Account {
   private constructor(
