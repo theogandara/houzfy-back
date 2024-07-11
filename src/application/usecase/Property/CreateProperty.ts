@@ -27,6 +27,7 @@ interface CreatePropertyInput {
   security24h: boolean;
   furnished: boolean;
   others: string;
+  images: string[];
 }
 
 export default class CreateProperty {
@@ -58,7 +59,8 @@ export default class CreateProperty {
       input.barbecueArea,
       input.security24h,
       input.furnished,
-      input.others
+      input.others,
+      input.images
     );
     await this.propertyRepository.save(property);
     return {

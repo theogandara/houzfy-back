@@ -26,10 +26,10 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
         property_id, title, price, description, purpose, category, address, number, 
         neighborhood, city, state, zip_code, total_area, built_area, bedrooms, 
         bathrooms, suites, parking_spaces, pool, gym, elevator, pets_allowed, 
-        barbecue_area, security_24h, furnished, others, created_at
+        barbecue_area, security_24h, furnished, others, images, created_at
       ) values (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, 
-        $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27
+        $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28
       )`,
       [
         property.propertyId,
@@ -58,6 +58,7 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
         property.security24h,
         property.furnished,
         property.others,
+        property.images,
         property.createdAt,
       ]
     );
@@ -104,6 +105,7 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
         data.security_24h,
         data.furnished,
         data.others,
+        data.images,
         new Date(data.created_at)
       );
     });
@@ -156,6 +158,7 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
       data.security_24h,
       data.furnished,
       data.others,
+      data.images,
       data.created_at
     );
 
@@ -208,6 +211,7 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
       data.security_24h,
       data.furnished,
       data.others,
+      data.images,
       data.created_at
     );
 
@@ -244,6 +248,7 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
       mergedProperty.security24h,
       mergedProperty.furnished,
       mergedProperty.others,
+      mergedProperty.images,
       mergedProperty.createdAt
     );
 
@@ -254,8 +259,8 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
       zip_code = $11, total_area = $12, built_area = $13, bedrooms = $14,
       bathrooms = $15, suites = $16, parking_spaces = $17, pool = $18, gym = $19,
       elevator = $20, pets_allowed = $21, barbecue_area = $22, security_24h = $23,
-      furnished = $24, others = $25, created_at = $26
-    where property_id = $27`,
+      furnished = $24, others = $25, images = $26, created_at = $27
+    where property_id = $28`,
       [
         propertyToUpdate.title,
         propertyToUpdate.price,
@@ -282,6 +287,7 @@ export default class PropertyRepositoryDatabase implements PropertyRepository {
         propertyToUpdate.security24h,
         propertyToUpdate.furnished,
         propertyToUpdate.others,
+        propertyToUpdate.images,
         propertyToUpdate.createdAt,
         id,
       ]

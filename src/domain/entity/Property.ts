@@ -28,6 +28,7 @@ export default class Property {
     readonly security24h: boolean,
     readonly furnished: boolean,
     readonly others: string,
+    readonly images: string[],
     readonly createdAt: Date
   ) {}
 
@@ -56,7 +57,8 @@ export default class Property {
     barbecueArea: boolean,
     security24h: boolean,
     furnished: boolean,
-    others: string
+    others: string,
+    images: string[]
   ) {
     this.validateTitle(title);
     this.validatePurpose(purpose);
@@ -111,6 +113,7 @@ export default class Property {
       security24h,
       furnished,
       others,
+      images,
       new Date()
     );
   }
@@ -142,6 +145,7 @@ export default class Property {
     security24h: boolean,
     furnished: boolean,
     others: string,
+    images: string[],
     createdAt: Date
   ) {
     this.validateTitle(title);
@@ -196,6 +200,7 @@ export default class Property {
       security24h,
       furnished,
       others,
+      images,
       createdAt
     );
   }
@@ -227,6 +232,7 @@ export default class Property {
     security24h: boolean,
     furnished: boolean,
     others: string,
+    images: string[],
     createdAt: Date
   ) {
     return new Property(
@@ -256,6 +262,7 @@ export default class Property {
       security24h,
       furnished,
       others,
+      images,
       createdAt
     );
   }
