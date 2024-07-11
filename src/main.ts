@@ -1,6 +1,9 @@
 import GetAccount from "./application/usecase/Account/GetAccount";
 import Login from "./application/usecase/Account/Login";
 import Signup from "./application/usecase/Account/Signup";
+import CreateDocument from "./application/usecase/Document/CreateDocument";
+import DeleteDocument from "./application/usecase/Document/DeleteDocument";
+import GetDocuments from "./application/usecase/Document/GetDocuments";
 import CreateLead from "./application/usecase/Lead/CreateLead";
 import DeleteLead from "./application/usecase/Lead/DeleteLead";
 import GetLeads from "./application/usecase/Lead/GetLeads";
@@ -15,6 +18,7 @@ import { PGPromiseAdapter } from "./infra/database/DatabaseConnection";
 import { ExpressAdapter } from "./infra/http/HttpServer";
 import MainController from "./infra/http/MainController";
 import AccountRepositoryDatabase from "./infra/repository/AccountRepository";
+import DocumentRepositoryDatabase from "./infra/repository/DocumentRepository";
 import LeadRepositoryDatabase from "./infra/repository/LeadRepository";
 import PropertyRepositoryDatabase from "./infra/repository/PropertyRepository";
 import PasswordServiceBCrypt from "./infra/service/PasswordServiceBCrypt";
@@ -38,6 +42,11 @@ const updateLead = new UpdateLead(leadRepository);
 const getLeads = new GetLeads(leadRepository);
 const deleteLead = new DeleteLead(leadRepository);
 const upload = new UploadFile();
+const documentRepository = new DocumentRepositoryDatabase(connection);
+const createDocument = new CreateDocument(documentRepository);
+const getDocuments = new GetDocuments(documentRepository);
+const deleteDocument = new DeleteDocument(documentRepository);
+
 new MainController(
   httpServer,
   signup,
@@ -52,7 +61,10 @@ new MainController(
   updateLead,
   getLeads,
   deleteLead,
-  upload
+  upload,
+  createDocument,
+  getDocuments,
+  deleteDocument
 );
 
 httpServer.listen(3000);

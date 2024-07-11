@@ -13,6 +13,9 @@ import DeleteProperty from "../../application/usecase/Property/DeleteProperty";
 import GetProperties from "../../application/usecase/Property/GetProperties";
 import GetProperty from "../../application/usecase/Property/GetProperty";
 import UpdateProperty from "../../application/usecase/Property/UpdateProperty";
+import CreateDocument from "../../application/usecase/Document/CreateDocument";
+import GetDocuments from "../../application/usecase/Document/GetDocuments";
+import DeleteDocument from "../../application/usecase/Document/DeleteDocument";
 
 export default class MainController {
   constructor(
@@ -29,7 +32,10 @@ export default class MainController {
     updateLead: UpdateLead,
     getLeads: GetLeads,
     deleteLead: DeleteLead,
-    upload: UploadFile
+    upload: UploadFile,
+    createDocument: CreateDocument,
+    getDocuments: GetDocuments,
+    deleteDocument: DeleteDocument
   ) {
     httpServer.register(
       "PUBLIC",
@@ -147,6 +153,36 @@ export default class MainController {
       "/lead",
       async function (params: any, body: any, query: any) {
         const output = await deleteLead.execute(query.leadId);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "PROTECTED",
+      "post",
+      "/new-document",
+      async function (params: any, body: any, query: any) {
+        const output = await createDocument.execute(body);
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "PROTECTED",
+      "get",
+      "/documents",
+      async function (params: any, body: any, query: any) {
+        const output = await getDocuments.execute();
+        return output;
+      }
+    );
+
+    httpServer.register(
+      "PROTECTED",
+      "delete",
+      "/document",
+      async function (params: any, body: any, query: any) {
+        const output = await deleteDocument.execute(query.id);
         return output;
       }
     );
