@@ -1,5 +1,8 @@
 import crypto from "crypto";
 import { S3 } from "aws-sdk";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const s3 = new S3({
   endpoint: process.env.S3_URL,
