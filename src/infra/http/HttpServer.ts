@@ -34,10 +34,16 @@ export class ExpressAdapter implements HttpServer {
     this.app[method](url, async function (req: any, res: any) {
       try {
         if (type === "PROTECTED") {
-          const token = req.headers.authorization;
-          const tokenWithoutBearer = token?.replace("Bearer ", "");
-          const validateToken = new ValidateTokenJwt();
-          validateToken.validateToken(tokenWithoutBearer);
+          try {
+            const token = req.headers.authorization;
+            const tokenWithoutBearer = token?.replace("Bearer ", "");
+            const validateToken = new ValidateTokenJwt();
+            validateToken.validateToken(tokenWithoutBearer);
+          } catch (e: any) {
+            return res.status(401).json({
+              message: e.message,
+            });
+          }
         }
 
         const output = await callback(req.params, req.body, req.query);
