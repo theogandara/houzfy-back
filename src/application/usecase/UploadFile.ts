@@ -17,7 +17,7 @@ export default class UploadFile {
   key = crypto.randomUUID();
 
   async execute(buffer: Buffer, originalname: string) {
-    const fileName = this.key + originalname;
+    const fileName = this.key + originalname.replace(/ /g, "_");
     await s3
       .putObject({
         Bucket: process.env.S3_BUCKET || "houzfy",
