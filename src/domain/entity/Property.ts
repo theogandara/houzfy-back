@@ -332,14 +332,14 @@ export default class Property {
   }
 
   private static validateTotalArea(totalArea: number) {
-    if (isNaN(totalArea) || totalArea >= 10000) {
-      throw new Error("Total area must be a numeric value less than 10000.");
+    if (isNaN(totalArea) || totalArea >= 1000000) {
+      throw new Error("Total area must be a numeric value less than 1000000.");
     }
   }
 
   private static validateBuiltArea(builtArea: number) {
-    if (isNaN(builtArea) || builtArea >= 10000) {
-      throw new Error("Built area must be a numeric value less than 10000.");
+    if (isNaN(builtArea) || builtArea >= 1000000) {
+      throw new Error("Built area must be a numeric value less than 1000000.");
     }
   }
 
