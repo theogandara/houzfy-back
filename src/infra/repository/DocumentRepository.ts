@@ -33,8 +33,8 @@ export default class DocumentRepositoryDatabase implements DocumentRepository {
       return Document.restore(
         data.document_id,
         data.title,
-        data.url,
         data.description,
+        data.url,
         new Date(data.created_at)
       );
     });
