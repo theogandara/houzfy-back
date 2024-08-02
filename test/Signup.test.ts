@@ -1,5 +1,5 @@
-import GetAccount from "../src/application/usecase/GetAccount";
-import Signup from "../src/application/usecase/Signup";
+import GetAccount from "../src/application/usecase/Account/GetAccount";
+import Signup from "../src/application/usecase/Account/Signup";
 import { PGPromiseAdapter } from "../src/infra/database/DatabaseConnection";
 import AccountRepositoryDatabase from "../src/infra/repository/AccountRepository";
 import PasswordServiceBCrypt from "../src/infra/service/PasswordServiceBCrypt";
