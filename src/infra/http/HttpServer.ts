@@ -14,7 +14,7 @@ export default interface HttpServer {
   listen(port: number): void;
 }
 
-const allowlist = ["http://localhost:3003"];
+const allowlist = ["http://localhost:3003", "https://dev.houzfy.com.br"];
 
 export class ExpressAdapter implements HttpServer {
   app: any;
